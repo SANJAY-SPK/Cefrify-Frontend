@@ -1,0 +1,24 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+
+const profile = () => {
+  return (
+    <View style={styles.container}>
+      <Text>profile</Text>
+    </View>
+  )
+}
+
+export default profile
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f5f5f5',
+        padding: 20,
+    },
+    text: {
+        fontSize: 16,
+        color: '#333',
+    },
+})

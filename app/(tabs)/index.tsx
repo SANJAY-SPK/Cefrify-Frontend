@@ -1,75 +1,263 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Header from '@/components/Header';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const app = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container} edges={['left', 'top', 'right']}>
+      <Header/>
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.content}>
+          <View style={styles.titleSection}>
+            <Text style={styles.welcomeTitle}>Welcome to CEFRify</Text>
+            <Text style={styles.description}>
+              Discover your language proficiency level with our comprehensive CEFR assessment
+            </Text>
+          </View>
+
+          <View style={styles.infoCard}>
+            <Text style={styles.infoTitle}>Assessment Structure</Text>
+            <View style={styles.infoItem}>
+              <View style={styles.stepNumber}>
+                <Text style={styles.stepText}>1</Text>
+              </View>
+              <View style={styles.stepContent}>
+                <Text style={styles.stepTitle}>Text Repetition</Text>
+                <Text style={styles.infoText}>Read and repeat given texts</Text>
+              </View>
+            </View>
+            <View style={styles.infoItem}>
+              <View style={styles.stepNumber}>
+                <Text style={styles.stepText}>2</Text>
+              </View>
+              <View style={styles.stepContent}>
+                <Text style={styles.stepTitle}>Audio Comprehension</Text>
+                <Text style={styles.infoText}>Listen and respond to audio clips</Text>
+              </View>
+            </View>
+            <View style={styles.infoItem}>
+              <View style={styles.stepNumber}>
+                <Text style={styles.stepText}>3</Text>
+              </View>
+              <View style={styles.stepContent}>
+                <Text style={styles.stepTitle}>Free Speech</Text>
+                <Text style={styles.infoText}>Express yourself on given topics</Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.statsCard}>
+            <Text style={styles.statsTitle}>Test Statistics</Text>
+            <View style={styles.statsRow}>
+              <View style={styles.statItem}>
+                <Text style={styles.statNumber}>~15</Text>
+                <Text style={styles.statLabel}>Minutes</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Text style={styles.statNumber}>3</Text>
+                <Text style={styles.statLabel}>Rounds</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Text style={styles.statNumber}>Instant</Text>
+                <Text style={styles.statLabel}>Results</Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity 
+              style={styles.startButton}
+              onPress={() => {
+                router.push('/instructions');
+              }}
+            >
+              <Ionicons name="play-circle" size={24} color="#fff" />
+              <Text style={styles.startButtonText}>Start Assessment</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.learnMoreButton}
+              onPress={() => {
+                // Navigate to info screen
+              }}
+            >
+              <Text style={styles.learnMoreText}>Learn about CEFR</Text>
+              <Ionicons name="information-circle-outline" size={20} color="#4A90E2" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
+export default app;
+
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#f8fafc',
+  },
+  scrollContent: {
+    padding: 20,
+    paddingBottom: 80, // Added extra bottom padding for tab bar
+  },
+  content: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 24,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  titleSection: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  welcomeTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    color: '#1e293b',
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: 16,
+    color: '#64748b',
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  infoCard: {
+    backgroundColor: '#f8fafc',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+  },
+  infoTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    color: '#1e293b',
+  },
+  infoItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  stepNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#4A90E2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  stepText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  stepContent: {
+    flex: 1,
+  },
+  stepTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 2,
+  },
+  infoText: {
+    fontSize: 14,
+    color: '#6b7280',
+    lineHeight: 20,
+  },
+  statsCard: {
+    backgroundColor: '#e0f2fe', // Fixed invalid color
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#b3e5fc', // Fixed invalid color
+  },
+  statsTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+    color: '#0277bd', // Fixed invalid color
+    textAlign: 'center',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  statItem: {
+    alignItems: 'center',
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#0288d1', // Fixed invalid color
+    marginBottom: 4,
+  },
+  statLabel: {
+    fontSize: 12,
+    color: '#0288d1', // Fixed invalid color
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  buttonContainer: {
+    gap: 12,
+  },
+  startButton: {
+    backgroundColor: '#4A90E2',
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    shadowColor: '#4A90E2',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  startButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  learnMoreButton: {
+    borderWidth: 2,
+    borderColor: '#4A90E2',
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  learnMoreText: {
+    color: '#4A90E2',
+    fontSize: 16,
+    fontWeight: '600',
+    marginRight: 8,
   },
 });

@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "CERF",
+    "name": "CEFRify",
     "slug": "CERF",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Logo.png",
     "scheme": "cerf",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,15 +13,15 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/CEFR.png",
+        "backgroundColor": "#4A90E2"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/CEFR.png"
     },
     "plugins": [
       "expo-router",
