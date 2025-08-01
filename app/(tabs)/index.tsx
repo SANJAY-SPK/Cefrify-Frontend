@@ -4,13 +4,58 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  TextInput,
+  Alert,
 } from 'react-native';
+import React, { useState } from 'react';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/Header';
 
 const app = () => {
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    email: ''
+  });
+
+  const handleInputChange = (field, value) => {
+    setUserInfo(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const validateAndStartTest = () => {
+    // Validate required fields
+    if (!userInfo.name.trim()) {
+      Alert.alert('Required Field', 'Please enter your name to continue');
+      return;
+    }
+
+    if (!userInfo.email.trim()) {
+      Alert.alert('Required Field', 'Please enter your email address to continue');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userInfo.email)) {
+      Alert.alert('Invalid Email', 'Please enter a valid email address');
+      return;
+    }
+
+    // Store user info (you can save to AsyncStorage or pass as navigation params)
+    // For now, we'll just navigate to instructions
+    router.push({
+      pathname: '/instructions',
+      params: {
+        userName: userInfo.name,
+        userEmail: userInfo.email
+      }
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['left', 'top', 'right']}>
       <Header/>
@@ -24,6 +69,38 @@ const app = () => {
             <Text style={styles.description}>
               Discover your language proficiency level with our comprehensive CEFR assessment
             </Text>
+          </View>
+
+          {/* User Information Form */}
+          <View style={styles.userInfoCard}>
+            <Text style={styles.userInfoTitle}>Your Information</Text>
+            <Text style={styles.userInfoSubtitle}>
+              Please provide your details to personalize your assessment experience
+            </Text>
+            
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Full Name *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your full name"
+                value={userInfo.name}
+                onChangeText={(value) => handleInputChange('name', value)}
+                placeholderTextColor="#9ca3af"
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Email Address *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your email address"
+                value={userInfo.email}
+                onChangeText={(value) => handleInputChange('email', value)}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                placeholderTextColor="#9ca3af"
+              />
+            </View>
           </View>
 
           <View style={styles.infoCard}>
@@ -77,10 +154,11 @@ const app = () => {
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity 
-              style={styles.startButton}
-              onPress={() => {
-                router.push('/instructions');
-              }}
+              style={[
+                styles.startButton,
+                (!userInfo.name.trim() || !userInfo.email.trim()) && styles.startButtonDisabled
+              ]}
+              onPress={validateAndStartTest}
             >
               <Ionicons name="play-circle" size={24} color="#fff" />
               <Text style={styles.startButtonText}>Start Assessment</Text>
@@ -89,7 +167,7 @@ const app = () => {
             <TouchableOpacity 
               style={styles.learnMoreButton}
               onPress={() => {
-                // Navigate to info screen
+                router.push('/aboutUs');
               }}
             >
               <Text style={styles.learnMoreText}>Learn about CEFR</Text>
@@ -140,6 +218,45 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24,
   },
+  userInfoCard: {
+    backgroundColor: '#f0f9ff',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#bae6fd',
+  },
+  userInfoTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#0c4a6e',
+    marginBottom: 8,
+  },
+  userInfoSubtitle: {
+    fontSize: 14,
+    color: '#0369a1',
+    marginBottom: 20,
+    lineHeight: 20,
+  },
+  inputContainer: {
+    marginBottom: 16,
+  },
+  inputLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 8,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#d1d5db',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    fontSize: 16,
+    color: '#1e293b',
+    backgroundColor: '#fff',
+  },
   infoCard: {
     backgroundColor: '#f8fafc',
     borderRadius: 16,
@@ -188,18 +305,18 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   statsCard: {
-    backgroundColor: '#e0f2fe', // Fixed invalid color
+    backgroundColor: '#e0f2fe',
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#b3e5fc', // Fixed invalid color
+    borderColor: '#b3e5fc',
   },
   statsTitle: {
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 16,
-    color: '#0277bd', // Fixed invalid color
+    color: '#0277bd',
     textAlign: 'center',
   },
   statsRow: {
@@ -212,12 +329,12 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#0288d1', // Fixed invalid color
+    color: '#0288d1',
     marginBottom: 4,
   },
   statLabel: {
     fontSize: 12,
-    color: '#0288d1', // Fixed invalid color
+    color: '#0288d1',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
@@ -237,6 +354,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 6,
+  },
+  startButtonDisabled: {
+    backgroundColor: '#9ca3af',
+    shadowOpacity: 0.1,
   },
   startButtonText: {
     color: '#fff',
