@@ -1,50 +1,175 @@
-# Welcome to your Expo app 👋
+# CEFRify - English Proficiency Test App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+CEFRify is a cross-platform mobile app built with React Native and Spring Boot for evaluating a user's English language proficiency level based on the CEFR (Common European Framework of Reference) scale. The app guides users through three interactive test rounds and provides comprehensive results with personalized feedback.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+### 📱 Cross-Platform
+- **React Native + Expo** for Android, iOS, and Web
+- Responsive design with consistent UI/UX across platforms
+- Tab and stack navigation using **Expo Router**
 
-2. Start the app
+### 🧠 Comprehensive Testing
+- **Text Repetition** – Tests short-term recall and pronunciation accuracy
+- **Audio Comprehension** – Tests listening skills and verbal response
+- **Free Speech** – Tests spontaneous speech, fluency, and vocabulary
 
-   ```bash
-   npx expo start
-   ```
+### 📊 Advanced Evaluation
+- AI-assisted or rules-based scoring system
+- CEFR level classification (A1 to C2)
+- Detailed performance breakdown by skill area
+- Progress tracking and historical results
 
-In the output, you'll find options to open the app in a
+### 🔧 Backend Features
+- **Spring Boot** REST API with JWT authentication
+- **PostgreSQL** database for user data and test results
+- Email integration for result delivery
+- Secure audio file processing and storage
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🏗️ Architecture
 
-## Get a fresh project
+```
+Frontend (React Native + Expo)
+├── User Interface & Navigation
+├── Audio Recording & Playback
+├── Real-time Test Management
+└── Result Visualization
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+Backend (Spring Boot + PostgreSQL)
+├── RESTful API Endpoints
+├── User Authentication & Management
+├── Test Evaluation Engine
+├── Email Service Integration
+└── Database Management
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## ⚙️ Setup Instructions
 
-To learn more about developing your project with Expo, look at the following resources:
+### ✅ Prerequisites
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Node.js** (18.0+)
+- **Expo CLI** (`npm install -g @expo/cli`)
+- **Java** (17+)
+- **Maven** (3.8+)
+- **PostgreSQL** (15+)
+- **Git**
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 📁 Project Structure
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```
+CEFRify/
+├── app/                          # Frontend source code
+│   ├── _layout.tsx              # Root layout configuration
+│   ├── (main)/                  # Stack Screens
+│   │   └── instructions.tsx     # Test instructions
+│   ├── (tabs)/                  # Tab Navigation Screens
+│   │   ├── index.tsx           # Home screen
+│   │   ├── profile.tsx         # User profile & results
+│   │   └── aboutUs.tsx         # About the app
+│   └── (tests)/                 # Test rounds and results
+│       ├── round1.tsx          # Text Repetition
+│       ├── round2.tsx          # Audio Comprehension
+│       ├── round3.tsx          # Free Speech
+│       └── result.tsx          # Test results
+│
+├── components/                   # Reusable UI components
+│   ├── Header.tsx              # App header component
+│   └── Footer.tsx              # App footer component
+│
+├── assets/                       # Static assets
+│   ├── images/                 # Logos, illustrations
+│   └── audios/                 # Audio clips for tests
+│
+├── backend/                      # Spring Boot backend
+│   ├── src/main/java/com/cefr/Cefrify/
+│   │   ├── CefrifyApplication.java
+│   │   ├── controllers/        # REST controllers
+│   │   ├── services/           # Business logic
+│   │   ├── models/             # Entity models
+│   │   ├── repositories/       # Data access layer
+│   │   └── config/             # Configuration classes
+│   └── src/main/resources/
+│       └── application.properties
+│
+├── app.json                      # Expo configuration
+├── package.json                  # NPM dependencies
+├── tsconfig.json                # TypeScript configuration
+├── eslint.config.js             # Linter rules
+└── README.md                    # This file
+```
+
+---
+
+## 🧪 Testing Workflow
+
+### User Journey
+1. **Home** - User provides name and email to start the test
+2. **Instructions** - Overview of test structure and requirements
+3. **Round 1: Text Repetition** - Read and repeat provided texts
+4. **Round 2: Audio Comprehension** - Listen and respond to audio clips
+5. **Round 3: Free Speech** - Speak freely on given topics
+6. **Results** - Comprehensive CEFR level assessment with feedback and download the result as pdf.
+
+### CEFR Levels
+- **A1** (Beginner) - Basic everyday expressions
+- **A2** (Elementary) - Simple personal information
+- **B1** (Intermediate) - Familiar topics and situations
+- **B2** (Upper Intermediate) - Complex texts and abstract topics
+- **C1** (Advanced) - Implicit meaning and fluent expression
+- **C2** (Proficient) - Native-like understanding and expression
+---
+
+## 📋 TODO List
+
+### 🔥 High Priority
+- [ ] **Backend Development**
+  - [ ] Complete Spring Boot REST API implementation
+  - [ ] User authentication and JWT token management
+  - [ ] PostgreSQL database schema and migrations
+  - [ ] Audio file upload and processing endpoints
+  
+- [ ] **Core Features**
+  - [ ] Audio recording functionality in React Native
+  - [ ] Audio playback and waveform visualization
+  - [ ] Test timer and progress tracking
+  - [ ] CEFR scoring algorithm implementation
+
+### 🚀 Medium Priority
+- [ ] **UI/UX Enhancements**
+  - [ ] Dark mode support
+  - [ ] Accessibility improvements (screen reader support)
+  - [ ] Loading states and error handling
+  - [ ] Onboarding tutorial for first-time users
+  
+- [ ] **Advanced Features**
+  - [ ] Offline mode capabilities
+  - [ ] Multi-language support (i18n)
+  - [ ] Social sharing of results
+  - [ ] Integration with learning platforms
+
+### 📈 Future Enhancements
+- [ ] **Analytics & Insights**
+  - [ ] User behavior analytics
+  - [ ] Performance metrics dashboard
+  - [ ] A/B testing framework
+  
+- [ ] **AI Integration**
+  - [ ] Speech-to-text accuracy improvements
+  - [ ] Natural language processing for better evaluation
+  - [ ] Personalized learning recommendations
+  
+- [ ] **Platform Expansion**
+  - [ ] Desktop application (Electron)
+  - [ ] Chrome extension for web testing
+  - [ ] API for third-party integrations
+---
+
+**Made with ❤️ for language learners worldwide**
