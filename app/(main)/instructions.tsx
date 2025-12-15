@@ -5,13 +5,15 @@ import { router } from 'expo-router'
 import Header from '@/components/Header'
 
 const instructions = () => {
+
+  
   const handleTakeTest = () => {
     router.push('/(tests)/round1')
   }
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <Header />
+    <SafeAreaView style={styles.safeArea} edges={['left', 'top', 'right']}>
+      <Header variant='minimal' customTitle="CEFR Assessment" />
       <View style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.welcomeText}>

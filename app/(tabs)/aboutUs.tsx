@@ -60,7 +60,6 @@ const AboutUs = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['left', 'top', 'right']}>
-      <Header />
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* About Section */}
         <View style={styles.aboutSection}>
@@ -323,10 +322,10 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   levelBadge: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 10,
     paddingVertical: 6,
-    borderRadius: 12,
-    minWidth: 40,
+    borderRadius: 100,
+    minWidth: 5,
     alignItems: 'center',
   },
   levelBadgeText: {

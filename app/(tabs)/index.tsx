@@ -58,7 +58,7 @@ const app = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['left', 'top', 'right']}>
-      <Header/>
+      <Header variant='transparent'/>
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
