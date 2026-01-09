@@ -13,7 +13,7 @@ const instructions = () => {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'top', 'right']}>
-      <Header variant='minimal' customTitle="CEFR Assessment" />
+      <Header variant="default" />
       <View style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.welcomeText}>

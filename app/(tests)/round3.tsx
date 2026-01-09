@@ -132,98 +132,252 @@ export default function Round3() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f4f6f8' },
-  wrapper: { flex: 1, padding: 20, justifyContent: 'space-between' },
 
-  title: { fontSize: 26, fontWeight: '700', textAlign: 'center', marginBottom: 6, color: '#1f2937' },
-  subtitle: { textAlign: 'center', color: '#6b7280', fontSize: 15, marginBottom: 20 },
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC', // softer neutral background
+  },
+
+  wrapper: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'space-between',
+  },
+
+  /* ---------- Titles ---------- */
+
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    textAlign: 'center',
+    color: '#0F172A',
+    letterSpacing: 0.4,
+  },
+
+  subtitle: {
+    textAlign: 'center',
+    color: '#64748B',
+    fontSize: 15,
+    marginTop: 6,
+    marginBottom: 24,
+  },
+
+  /* ---------- Topic Card ---------- */
 
   topicCard: {
-    backgroundColor: '#fff',
-    borderRadius: 14,
-    padding: 24,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    padding: 28,
     alignItems: 'center',
-    borderLeftColor: '#10b981',
-    borderLeftWidth: 5,
-    marginBottom: 30,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 3,
-  },
-  emoji: { fontSize: 40, marginBottom: 10 },
-  topicLabel: { textTransform: 'uppercase', color: '#6b7280', fontWeight: '600', fontSize: 14 },
-  topic: { fontSize: 20, color: '#1f2937', fontWeight: '600', textAlign: 'center', marginTop: 10 },
+    marginBottom: 32,
 
-  mainContent: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  tipsBox: {
-    backgroundColor: '#e0f2fe',
-    padding: 20,
-    borderRadius: 10,
-    width: '100%',
-    marginBottom: 20,
-    borderColor: '#bae6fd',
-    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
+
+    borderLeftWidth: 6,
+    borderLeftColor: '#22C55E',
   },
-  tipsHeading: { fontSize: 17, fontWeight: '600', color: '#0284c7', marginBottom: 10 },
-  tipsText: { fontSize: 14, lineHeight: 22, color: '#0369a1' },
+
+  emoji: {
+    fontSize: 42,
+    marginBottom: 12,
+  },
+
+  topicLabel: {
+    textTransform: 'uppercase',
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#64748B',
+    letterSpacing: 1.2,
+  },
+
+  topic: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#0F172A',
+    textAlign: 'center',
+    marginTop: 14,
+    lineHeight: 30,
+  },
+
+  /* ---------- Main ---------- */
+
+  mainContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  /* ---------- Tips ---------- */
+
+  tipsBox: {
+    backgroundColor: '#F0FDF4',
+    padding: 22,
+    borderRadius: 14,
+    width: '100%',
+    marginBottom: 28,
+    borderWidth: 1,
+    borderColor: '#BBF7D0',
+  },
+
+  tipsHeading: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#166534',
+    marginBottom: 10,
+  },
+
+  tipsText: {
+    fontSize: 15,
+    lineHeight: 24,
+    color: '#14532D',
+  },
+
+  /* ---------- Start Button ---------- */
 
   startBtn: {
-    backgroundColor: '#10b981',
-    paddingHorizontal: 40,
-    paddingVertical: 16,
-    borderRadius: 50,
-    elevation: 4,
+    backgroundColor: '#22C55E',
+    paddingHorizontal: 44,
+    paddingVertical: 18,
+    borderRadius: 999,
+    shadowColor: '#22C55E',
+    shadowOpacity: 0.35,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
-  startBtnText: { color: 'white', fontSize: 18, fontWeight: '600' },
+
+  startBtnText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '700',
+    letterSpacing: 0.4,
+  },
+
+  /* ---------- Recording State ---------- */
 
   recordingBox: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     padding: 30,
-    borderRadius: 16,
-    borderLeftWidth: 5,
-    borderLeftColor: '#ef4444',
+    borderRadius: 20,
     width: '100%',
     alignItems: 'center',
-    elevation: 3,
+
+    borderLeftWidth: 6,
+    borderLeftColor: '#EF4444',
+
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 6,
   },
+
   recordingIndicator: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
-    backgroundColor: '#fee2e2',
-    padding: 10,
-    borderRadius: 20,
-    borderColor: '#fecaca',
+    backgroundColor: '#FEF2F2',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 999,
     borderWidth: 1,
+    borderColor: '#FECACA',
+    marginBottom: 18,
   },
-  redDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: '#ef4444', marginRight: 8 },
-  recordingText: { color: '#991b1b', fontWeight: '600' },
 
-  timer: { fontSize: 42, fontWeight: '700', fontFamily: 'monospace', color: '#1f2937' },
-  timerMsg: { marginTop: 8, fontSize: 15, color: '#6b7280', textAlign: 'center' },
-  tipNote: { fontStyle: 'italic', color: '#92400e', marginTop: 20, marginBottom: 20 },
+  redDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#EF4444',
+    marginRight: 8,
+  },
+
+  recordingText: {
+    color: '#991B1B',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+
+  timer: {
+    fontSize: 44,
+    fontWeight: '800',
+    color: '#0F172A',
+    letterSpacing: 1,
+    marginBottom: 6,
+  },
+
+  timerMsg: {
+    fontSize: 15,
+    color: '#64748B',
+    textAlign: 'center',
+    marginBottom: 22,
+  },
+
+  tipNote: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    color: '#92400E',
+    textAlign: 'center',
+    marginBottom: 26,
+  },
+
+  /* ---------- Stop Button ---------- */
 
   stopBtn: {
-    backgroundColor: '#ef4444',
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-    borderRadius: 50,
-    elevation: 4,
+    backgroundColor: '#EF4444',
+    paddingHorizontal: 36,
+    paddingVertical: 16,
+    borderRadius: 999,
+    shadowColor: '#EF4444',
+    shadowOpacity: 0.35,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
-  stopBtnText: { color: '#fff', fontSize: 17, fontWeight: '600' },
 
-  progressBar: { alignItems: 'center', marginBottom: 10 },
-  progressText: { color: '#6b7280', marginBottom: 8, fontSize: 14 },
-  dots: { flexDirection: 'row' },
+  stopBtnText: {
+    color: '#FFFFFF',
+    fontSize: 17,
+    fontWeight: '700',
+    letterSpacing: 0.4,
+  },
+
+  /* ---------- Progress ---------- */
+
+  progressBar: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  progressText: {
+    color: '#64748B',
+    marginBottom: 10,
+    fontSize: 14,
+    fontWeight: '500',
+  },
+
+  dots: {
+    flexDirection: 'row',
+  },
+
   dot: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    marginHorizontal: 4,
-    backgroundColor: '#d1d5db',
+    marginHorizontal: 6,
+    backgroundColor: '#CBD5E1',
   },
-  complete: { backgroundColor: '#10b981' },
-  active: { backgroundColor: '#3b82f6' },
+
+  complete: {
+    backgroundColor: '#22C55E',
+  },
+
+  active: {
+    backgroundColor: '#3B82F6',
+  },
 });
